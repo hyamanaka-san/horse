@@ -5,17 +5,14 @@ class HorsesController < ApplicationController
  
         unless params[:ml] ==""  && params[:ml2] ==""  && params[:ml2_f] =="" && params[:ml3a_f] =="" 
           
-        @ml = Horse.ml(params[:ml])
-        
-        @ml2 = Horse.ml2(params[:ml2])
-         
-        @ml2_f = Horse.ml2_f(params[:ml2_f])
-           
-        @ml3a_f = Horse.ml3a_f(params[:ml3a_f]) 
-         # @money = Uma.money(params[:money]) 
+            @ml = Horse.ml(params[:ml])
+            @ml2 = Horse.ml2(params[:ml2])
+            @ml2_f = Horse.ml2_f(params[:ml2_f])
+            @ml3a_f = Horse.ml3a_f(params[:ml3a_f]) 
+            @gwin = Horse.gwin(params[:gwin]) 
+            #@sex = Horse.sex(params[:sex]) 
+             # @money = Uma.money(params[:money]) 
         end  
-        
-
     
     end
     

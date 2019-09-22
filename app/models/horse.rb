@@ -1,5 +1,8 @@
 class Horse < ApplicationRecord
     
+    #scope :gwin, -> { where("gwin = 1") }
+    #scope :ghistory, -> { where("ghistory > 0") }
+    
     def self.ml(ml)
      
         unless ml == nil
@@ -43,5 +46,25 @@ class Horse < ApplicationRecord
 
         end
     end
+
+    def self.gwin(gwin)
+     
+        unless gwin == nil
+
+           # Horse.where(['gwin LIKE ?', "#{gwin}%"])
+            Horse.where("gwin = 1")
+        end
+    end
+
+   # def self.sex(sex)
+    #p sex 
+   
+     #raise
+    #    unless sex == nil
+
+           # Horse.where(['sex LIKE ?', "#{boba}"])
+     #       Horse.where("sex == boba")
+      #  end
+#    end
     
 end

@@ -15,13 +15,13 @@ url1 = 'https://db.netkeiba.com/horse/ped/'
 url2 = 'https://db.netkeiba.com/horse/'
 
 #inturl = 2015104793
-inturl = 2011100001
+inturl = 2016100001
 #inturl = 2015100000
 
 
-CSV.open("umatest2011.csv", "w") do |csv|
+CSV.open("umatest2016.csv", "w") do |csv|
     
-6640.times do
+6650.times do
   
     strurl = inturl.to_s
     puts strurl
