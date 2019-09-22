@@ -1,0 +1,59 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  horse_id: MyString
+  horse_name: MyString
+  sex: MyString
+  birthday: 2019-09-21
+  all: 1
+  win: 1
+  second: 1
+  third: 1
+  other: 1
+  money: 1
+  gwin: MyString
+  ghistory: 1
+  production: MyString
+  ml: MyString
+  ml2: MyString
+  ml3a: MyString
+  fml3a: MyString
+  fml2: MyString
+  ml3b: MyString
+  fml3b: MyString
+  fml_f: MyString
+  ml2_f: MyString
+  fml2_f: MyString
+  ml3a_f: MyString
+  fml3a_f: MyString
+  ml3b_f: MyString
+  fml3b_f: MyString
+
+two:
+  horse_id: MyString
+  horse_name: MyString
+  sex: MyString
+  birthday: 2019-09-21
+  all: 1
+  win: 1
+  second: 1
+  third: 1
+  other: 1
+  money: 1
+  gwin: MyString
+  ghistory: 1
+  production: MyString
+  ml: MyString
+  ml2: MyString
+  ml3a: MyString
+  fml3a: MyString
+  fml2: MyString
+  ml3b: MyString
+  fml3b: MyString
+  fml_f: MyString
+  ml2_f: MyString
+  fml2_f: MyString
+  ml3a_f: MyString
+  fml3a_f: MyString
+  ml3b_f: MyString
+  fml3b_f: MyString

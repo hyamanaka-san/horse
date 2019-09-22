@@ -1,0 +1,103 @@
+<h1>うまsearch</h1>
+</p> 
+<%#=  form_with(model: [post, post_comment], local: true, data: { persist: 'garlic' }) do |f|%>
+
+    <p> 父:</p> 
+    <%= form_tag(horses_path, :method => "get")  do %>
+    <%= text_field_tag :ml , params[:ml] %>
+　　<%#= text_field_tag :ml ,@ml.pluck(:ml).uniq if params[:ml] %>
+    <%#= text_field_tag :ml ,value: (params[:ml] if params[:ml]) %>
+
+    <p>父父：</p> 
+    <%= form_tag(horses_path, :method => "get") do %>
+    <%= text_field_tag :ml2 , params[:ml2] %>
+       
+    <p>母父：</p> 
+    <%= form_tag(horses_path, :method => "get") do %>
+    <%= text_field_tag :ml2_f, params[:ml2_f] %>
+      
+    
+    <p>母父父：</p> 
+    <%= form_tag(horses_path, :method => "get") do %>
+    <%= text_field_tag :ml3a_f , params[:ml3a_f]%>
+ 
+    <p></p> <%= submit_tag 'Search', :ml => nil,  :ml2 => nil,:ml2_f => nil, :ml3a_f => nil %>
+    
+        <%#= form_tag(umas_path, :method => "get") do %>
+    <%#= text_field_tag :money %>
+    <%#= submit_tag 'Search', :horse_name => nil,:gwin => nil,:money => nil %>
+
+
+<%# フォームの数だけend必要 忘れがち%>
+    <% end %>
+    <% end %>
+    <% end %>
+    <% end %>
+
+
+
+
+<% @uma = @ml & @ml2 &@ml2_f & @ml3a_f %> <%# 検索から抽出されたそれぞれの重複データのみ取り出す %> 
+
+
+
+<% if @uma.present? %>
+<%= @uma.count %>頭ヒット
+
+<% if @uma.count >= 2 %>
+
+    <% unless params[:ml].blank? %> >
+        <% mlcheck = @ml.pluck(:ml).uniq %>
+        <% if mlcheck.length >= 2 %>
+            候補が複数います。検索しなおした方が良いかもしれません。<p>
+            <% mlcheck.each do |uma| %>
+                 <%= link_to uma, horses_path(:ml => uma) %>
+            <% end %>
+        <% end %>
+    <% end %>
+    
+    <% unless params[:ml2].blank? %> >
+        <% mlcheck2m = @ml2.pluck(:ml2).uniq %>
+        <% if mlcheck2m.length >= 2 %>
+            候補が複数います。検索しなおした方が良いかもしれません。<p>
+            <% mlcheck2m.each do |uma| %>
+                 <%= link_to uma, horses_path(:ml2 => uma) %>
+            <% end %>
+        <% end %>
+    <% end %>
+    
+    <% unless params[:ml2_f].blank? %> >
+        <% mlcheck2 = @ml2_f.pluck(:ml2_f).uniq %>
+        <% if mlcheck2.length >= 2 %>
+            候補が複数います。検索しなおした方が良いかもしれません。<p>
+            <% mlcheck2.each do |uma| %>
+                 <%= link_to uma, horses_path(:ml2_f => uma) %>
+            <% end %>
+        <% end %>
+    <% end %>
+    
+    <% unless params[:ml3a_f].blank? %> >
+        <% mlcheck3 = @ml3a_f.pluck(:ml3a_f).uniq %>
+        <% if mlcheck3.length >= 2 %>
+            母父父に候補が複数います。検索しなおした方が良いかもしれません。<p>
+            <% mlcheck3.each do |uma| %>
+                 <%= link_to uma, horses_path(:ml3a_f => uma) %>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>
+
+
+<ul>
+  <% @uma.each do |uma| %>
+  <%#= uma.name,"https://db.netkeiba.com/horse/"+uma.umaid ,:target=>["_blank"] ) %>
+  <li><%= link_to uma.horse_name ,'https://db.netkeiba.com/horse/'"#{uma.horse_id}",:target=>["_blank"] %> 
+   父 <%= uma.ml %>　父父<%= uma.ml2 %> 母父 <%= uma.ml2_f %>　母父父 <%= uma.ml3a_f %> 　
+  <%= uma.money %> </li>
+  <% end %>
+</ul>
+<% end %>
+
+
+<% if false %>
+<% end %>
