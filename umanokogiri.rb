@@ -21,7 +21,7 @@ inturl = 2016100001
 
 CSV.open("umatest2016.csv", "w") do |csv|
     
-6650.times do
+6620.times do
   
     strurl = inturl.to_s
     puts strurl

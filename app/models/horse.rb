@@ -1,7 +1,7 @@
 class Horse < ApplicationRecord
     
     #scope :gwin, -> { where("gwin = 1") }
-    #scope :ghistory, -> { where("ghistory > 0") }
+    scope :ghis, -> { where("ghistory > 0") }
     
     def self.ml(ml)
      
@@ -9,7 +9,7 @@ class Horse < ApplicationRecord
           #   if search == nil redirect_to umas
          # @uma = 
             Horse.where(['ml LIKE ?', "#{ml}%"])
-            
+           
         #@mlgroup = Horse.group(:ml).having('count(*) >= 2')
         #p @mlgroup 
         #raise
@@ -23,6 +23,16 @@ class Horse < ApplicationRecord
           #   if search == nil redirect_to umas
          # @uma = 
             Horse.where(['ml2 LIKE ?', "#{ml2}%"])
+
+        end
+    end
+    
+    def self.ml3a(ml3a) 
+     
+        unless ml3a == nil
+          #   if search == nil redirect_to umas
+         # @uma = 
+            Horse.where(['ml3a LIKE ?', "#{ml3a}%"])
 
         end
     end
@@ -53,6 +63,15 @@ class Horse < ApplicationRecord
 
            # Horse.where(['gwin LIKE ?', "#{gwin}%"])
             Horse.where("gwin = 1")
+        end
+    end
+    
+    def self.ghistory(ghistory)
+ 
+        unless ghistory == nil
+           # Horse.where(['gwin LIKE ?', "#{gwin}%"])
+            Horse.ghis
+            
         end
     end
 

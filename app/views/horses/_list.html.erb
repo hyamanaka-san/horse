@@ -1,0 +1,30 @@
+<% allrace = 0 %> 
+<% winrace = 0 %>
+<% greki = 0 %>
+<% money1000 = 0 %>
+<% searchall = 0 %> 
+
+<ul>
+<% @uma.each do |uma| %>
+    <% unless uma.all == 0 %>
+          <%#= uma.name,"https://db.netkeiba.com/horse/"+uma.umaid ,:target=>["_blank"] ) %>
+          <li><%= link_to uma.horse_name ,'https://db.netkeiba.com/horse/'"#{uma.horse_id}",:target=>["_blank"] %> 
+           父 <%= uma.ml %>　父父<%= uma.ml2 %> 母父 <%= uma.ml2_f %>　母父父 <%= uma.ml3a_f %> 　
+          <%= uma.money %> </li>
+          
+          <% allrace += uma.all %>
+          <% winrace += uma.win %>
+              <% if uma.ghistory >= 1 then uma.ghistory = 1 %>
+                        <% greki += uma.ghistory %>
+              <% end %>
+              <% if uma.money >= 10000000 then uma.money = 1 %>
+                        <% money1000 += uma.money %>
+              <% end %>
+        <% searchall = searchall + 1 %>
+    <% end %>
+  <% end %>
+</ul>
+
+検索条件にマッチする馬は<%= searchall %>頭いて、<%= allrace %>戦<%= winrace %>勝 です。
+重賞出走歴のある馬は<%= greki %>（出走率<%= greki/@uma.count %>）頭。
+1000万以上稼いだ馬は <%= money1000 %> 頭います。

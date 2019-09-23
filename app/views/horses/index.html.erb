@@ -11,6 +11,10 @@
     <p>父父：</p> 
     <%= form_tag(horses_path, :method => "get") do %>
     <%= text_field_tag :ml2 , params[:ml2] %>
+    
+    <p>父父父：</p> 
+    <%= form_tag(horses_path, :method => "get") do %>
+    <%= text_field_tag :ml3a , params[:ml3a] %>
        
     <p>母父：</p> 
     <%= form_tag(horses_path, :method => "get") do %>
@@ -21,20 +25,24 @@
     <%= form_tag(horses_path, :method => "get") do %>
     <%= text_field_tag :ml3a_f , params[:ml3a_f]%>
 
-    <% if params[:ml].present? || params[:ml2].present? || params[:ml2_f].present? || params[:ml3a_f].present?  %>
-        <p>ここに絞り込み入れる</p> 
+    <% if params[:ml].present? || params[:ml2].present? || params[:ml3a].present? || params[:ml2_f].present? || params[:ml3a_f].present?  %>
+        <p><%# >ここに絞り込み入れる</p> %> 
 　　　　<%= check_box_tag :gwin %>
         <%= label_tag :gwin, "重賞勝ち馬のみ" %>
+        
+　　　　<%= check_box_tag :ghistory %>
+        <%= label_tag :ghistory, "重賞出走歴あり" %>
+
 
         
         <%#= check_box_tag :sex %>
         <%#= label_tag :sex, "牡馬" %>       
          
-        <p></p> <%= submit_tag 'Search', :ml => nil,  :ml2 => nil,:ml2_f => nil, :ml3a_f => nil ,:gwin => nil %>
+        <p></p> <%= submit_tag 'Search', :ml => nil,  :ml2 => nil,  :ml3a => nil,:ml2_f => nil, :ml3a_f => nil ,:gwin => nil ,:ghistory  => nil %>
         
     <% elsif %>
          
-    <p></p> <%= submit_tag 'Search', :ml => nil,  :ml2 => nil,:ml2_f => nil, :ml3a_f => nil %>
+    <p></p> <%= submit_tag 'Search', :ml => nil,  :ml2 => nil,:ml3a => nil,:ml2_f => nil, :ml3a_f => nil %>
     
     <% end %> 
        
@@ -49,94 +57,44 @@
     <% end %>
     <% end %>
     <% end %>
+    <% end %>
 
 <%# if false %>
-    <% if @gwin.present? || @sex.present? %>
-        <% @uma = @ml & @ml2 &@ml2_f & @ml3a_f & @gwin %> <%# 検索から抽出されたそれぞれの重複データのみ取り出す %> 
+    <%# if @gwin.present? || @ghistory.present? %>
+    <% if @gcheck.present? %>
+        <% @uma = @ml & @ml2 & @ml3a & @ml2_f & @ml3a_f & @gcheck %> 
+    <% elsif @ghistory.present? %>
+        <% @uma = @ml & @ml2 & @ml3a & @ml2_f & @ml3a_f & @ghistory %> 
+    <% elsif @gwin.present? %>
+        <% @uma = @ml & @ml2 & @ml3a & @ml2_f & @ml3a_f & @gwin %> 
     <% else %>
-        <% @uma = @ml & @ml2 &@ml2_f & @ml3a_f  %> 
+        <% @uma = @ml & @ml2 & @ml3a  &@ml2_f & @ml3a_f  %> 
     <% end %>
 <%# end %>
 
 <%# @uma = @ml & @ml2 & @ml2_f & @ml3a_f %>
-    
-<% if @uma.present? %>
 
-<% if @uma.count >= 200 %>
-
-対象が多すぎます。もう少し絞ってください。
-
-<% else %>
-
-<%= @uma.count %>頭ヒット
-
-<% if @uma.count >= 2 %>
-
-    <% unless params[:ml].blank? %> >
-        <% mlcheck = @ml.pluck(:ml).uniq %>
-        <% if mlcheck.length >= 2 %>
-            候補が複数います。検索しなおした方が良いかもしれません。<p>
-            <% mlcheck.each do |uma| %>
-                 <%= uma %>
-            <% end %>
-        <% end %>
-    <% end %>
-    
-    <% unless params[:ml2].blank? %> >
-        <% mlcheck2m = @ml2.pluck(:ml2).uniq %>
-        <% if mlcheck2m.length >= 2 %>
-            候補が複数います。検索しなおした方が良いかもしれません。<p>
-            <% mlcheck2m.each do |uma| %>
-                  <%= uma %>
-            <% end %>
-        <% end %>
-    <% end %>
-    
-    <% unless params[:ml2_f].blank? %> >
-        <% mlcheck2 = @ml2_f.pluck(:ml2_f).uniq %>
-        <% if mlcheck2.length >= 2 %>
-            候補が複数います。検索しなおした方が良いかもしれません。<p>
-            <% mlcheck2.each do |uma| %>
-                  <%= uma %>
-            <% end %>
-        <% end %>
-    <% end %>
-    
-    <% unless params[:ml3a_f].blank? %> >
-        <% mlcheck3 = @ml3a_f.pluck(:ml3a_f).uniq %>
-        <% if mlcheck3.length >= 2 %>
-            母父父に候補が複数います。検索しなおした方が良いかもしれません。<p>
-            <% mlcheck3.each do |uma| %>
-                  <%= uma %>
-            <% end %>
-        <% end %>
-    <% end %>
+<% if @uma.blank? %>
+        いません。
 <% end %>
 
+<% if @uma.present?  %>
 
-<% allrace = 0 %> <% winrace = 0 %><% greki = 0 %>
+    <% if @uma.count >= 300 %>
+    
+        対象が多すぎます。もう少し絞ってください。
+        
+    <% else %>
 
-<ul>
-  <% @uma.each do |uma| %>
-  <%#= uma.name,"https://db.netkeiba.com/horse/"+uma.umaid ,:target=>["_blank"] ) %>
-  <li><%= link_to uma.horse_name ,'https://db.netkeiba.com/horse/'"#{uma.horse_id}",:target=>["_blank"] %> 
-   父 <%= uma.ml %>　父父<%= uma.ml2 %> 母父 <%= uma.ml2_f %>　母父父 <%= uma.ml3a_f %> 　
-  <%= uma.money %> </li>
-  <% allrace += uma.all %>
-  <% winrace += uma.win %>
-      <% if uma.ghistory >= 1 then uma.ghistory = 1 %>
-      
-          <% greki += uma.ghistory %>
-      <% end %>
-  <% end %>
-</ul>
+    <%= render 'wcount',wcount: @uma %>
+    
+    <%= render 'list' %>
 
-<%= allrace %>戦<%= winrace %>勝 1頭あたりだいたい<%= winrace/@uma.count %>勝しています。
-重賞出走歴のある馬は<%= greki %>頭います。
-
+    <% end %>
+        
 <% end %>
 
-<% end %>
+<%# end %>
 
 
 <% if false %>

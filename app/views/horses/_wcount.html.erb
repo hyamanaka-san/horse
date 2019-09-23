@@ -1,0 +1,57 @@
+
+
+    <%= @uma.count %>頭ヒット
+
+    <% if @uma.count >= 2 %>
+    
+        <% unless params[:ml].blank? %> >
+            <% mlcheck = @ml.pluck(:ml).uniq %>
+            <% if mlcheck.length >= 2 %>
+                父の候補が複数います。検索しなおした方が良いかもしれません。<p>
+                <% mlcheck.each do |uma| %>
+                     <%= uma %>
+                <% end %>
+            <% end %>
+        <% end %>
+        
+        <% unless params[:ml2].blank? %> >
+            <% mlcheck2m = @ml2.pluck(:ml2).uniq %>
+            <% if mlcheck2m.length >= 2 %>
+                父父の候補が複数います。検索しなおした方が良いかもしれません。<p>
+                <% mlcheck2m.each do |uma| %>
+                      <%= uma %>
+                <% end %>
+            <% end %>
+        <% end %>
+
+        <% unless params[:ml3a].blank? %> >
+            <% mlcheck3ma = @ml3a.pluck(:ml3a).uniq %>
+            <% if mlcheck3ma.length >= 2 %>
+                父父の候補が複数います。検索しなおした方が良いかもしれません。<p>
+                <% mlcheck3ma.each do |uma| %>
+                      <%= uma %>
+                <% end %>
+            <% end %>
+        <% end %>
+        
+        <% unless params[:ml2_f].blank? %> >
+            <% mlcheck2 = @ml2_f.pluck(:ml2_f).uniq %>
+            <% if mlcheck2.length >= 2 %>
+                母父の候補が複数います。検索しなおした方が良いかもしれません。<p>
+                <% mlcheck2.each do |uma| %>
+                      <%= uma %>
+                <% end %>
+            <% end %>
+        <% end %>
+        
+        <% unless params[:ml3a_f].blank? %> >
+            <% mlcheck3 = @ml3a_f.pluck(:ml3a_f).uniq %>
+            <% if mlcheck3.length >= 2 %>
+                母父父の候補が複数います。検索しなおした方が良いかもしれません。<p>
+                <% mlcheck3.each do |uma| %>
+                      <%= uma %>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+
