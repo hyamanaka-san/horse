@@ -66,3 +66,7 @@ gem 'nokogiri'
 gem 'kaminari'
 
 gem 'jquery-rails'
+
+gem 'meta-tags'
+
+gem 'puma_worker_killer'

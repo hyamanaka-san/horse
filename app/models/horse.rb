@@ -13,26 +13,26 @@ class Horse < ApplicationRecord
         #@mlgroup = Horse.group(:ml).having('count(*) >= 2')
         #p @mlgroup 
         #raise
-
         end
+
     end
     
     def self.ml2(ml2) 
-     
+
         unless ml2 == nil
           #   if search == nil redirect_to umas
          # @uma = 
-            Horse.where(['ml2 LIKE ?', "#{ml2}%"])
-
+           Horse.where(['ml2 LIKE ?', "#{ml2}%"])
+          
         end
     end
     
     def self.ml3a(ml3a) 
      
         unless ml3a == nil
-          #   if search == nil redirect_to umas
-         # @uma = 
+
             Horse.where(['ml3a LIKE ?', "#{ml3a}%"])
+            #@ml2.where(['ml3a LIKE ?', "#{ml3a}%"])
 
         end
     end

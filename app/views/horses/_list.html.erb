@@ -4,14 +4,38 @@
 <% money1000 = 0 %>
 <% searchall = 0 %> 
 
-<ul>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>馬名</th>
+            <th>性別</th>
+            <th>父</th>
+            <th>母父</th>
+            <th>父父</th>
+            <th>賞金</th>
+        </tr>
+    </thead>
+    
 <% @uma.each do |uma| %>
     <% unless uma.all == 0 %>
-          <%#= uma.name,"https://db.netkeiba.com/horse/"+uma.umaid ,:target=>["_blank"] ) %>
-          <li><%= link_to uma.horse_name ,'https://db.netkeiba.com/horse/'"#{uma.horse_id}",:target=>["_blank"] %> 
-           父 <%= uma.ml %>　父父<%= uma.ml2 %> 母父 <%= uma.ml2_f %>　母父父 <%= uma.ml3a_f %> 　
-          <%= uma.money %> </li>
-          
+    
+
+
+    <tbody>
+        <tr>
+            <small>
+            <td><%= link_to uma.horse_name ,'https://db.netkeiba.com/horse/'"#{uma.horse_id}",:target=>["_blank"] %></td> 
+            <td><%= uma.sex %></td>
+            <td><%= uma.ml %></td>　
+            <td><%= uma.ml2_f %></td>
+            <td><%= uma.ml2 %></td>
+
+            <td><div class="text-right"><%= uma.money.to_s(:delimited) %>円 </div></td>
+            </small>
+        </tr>
+    
+
           <% allrace += uma.all %>
           <% winrace += uma.win %>
               <% if uma.ghistory >= 1 then uma.ghistory = 1 %>
@@ -23,8 +47,12 @@
         <% searchall = searchall + 1 %>
     <% end %>
   <% end %>
-</ul>
+  </tbody>
+</table>
 
+<span class="text-monospace">
 検索条件にマッチする馬は<%= searchall %>頭いて、<%= allrace %>戦<%= winrace %>勝 です。
 重賞出走歴のある馬は<%= greki %>（出走率<%= greki/@uma.count %>）頭。
 1000万以上稼いだ馬は <%= money1000 %> 頭います。
+</span>
+

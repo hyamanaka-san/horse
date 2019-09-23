@@ -1,32 +1,106 @@
 <h1>うまsearch</h1>
 </p> 
 <%#=  form_with(model: [post, post_comment], local: true, data: { persist: 'garlic' }) do |f|%>
+<table class="table table-bordered small">
 
+<tr>
+    <td rowspan="4" class="table-primary">
     <p> 父:</p> 
-    <%= form_tag(horses_path, :method => "get")  do %>
-    <%= text_field_tag :ml , params[:ml] %>
-　　<%#= text_field_tag :ml ,@ml.pluck(:ml).uniq if params[:ml] %>
-    <%#= text_field_tag :ml ,value: (params[:ml] if params[:ml]) %>
-
-    <p>父父：</p> 
-    <%= form_tag(horses_path, :method => "get") do %>
-    <%= text_field_tag :ml2 , params[:ml2] %>
+        <%= form_tag(horses_path, :method => "get")  do %>
+        <%= text_field_tag :ml , params[:ml] %>
+    　　<%#= text_field_tag :ml ,@ml.pluck(:ml).uniq if params[:ml] %>
+        <%#= text_field_tag :ml ,value: (params[:ml] if params[:ml]) %>
+    </td>
     
-    <p>父父父：</p> 
-    <%= form_tag(horses_path, :method => "get") do %>
-    <%= text_field_tag :ml3a , params[:ml3a] %>
+    <td rowspan="2" class="table-primary">
+        <p>父父：</p> 
+        <%= form_tag(horses_path, :method => "get") do %>
+        <%= text_field_tag :ml2 , params[:ml2] %>
+    </td>
+    
+    <td class="table-primary">
+        父父父:
+        <%= form_tag(horses_path, :method => "get") do %>
+        <%= text_field_tag :ml3a , params[:ml3a] %>
+    </td> 
+</tr>
+
+
+<tr>
+
+    <td  class="table-danger">
+        父父母
+    </td> 
+</tr>  
+
+<tr>
+    <td rowspan="2" class="table-danger">
+        父母  
+    </td> 
        
-    <p>母父：</p> 
-    <%= form_tag(horses_path, :method => "get") do %>
-    <%= text_field_tag :ml2_f, params[:ml2_f] %>
+    <td class="table-primary">
+        父母父
+    </td> 
+</tr>  
+
+<tr>
+
+    <td class="table-danger">
+        父母母
+    </td> 
+</tr>  
+
+<tr>
+    <td rowspan="4" class="table-danger">
+        母
+    </td> 
+    
+    <td rowspan="2" class="table-primary">
+        <p>母父：</p> 
+        <%= form_tag(horses_path, :method => "get") do %>
+        <%= text_field_tag :ml2_f, params[:ml2_f] %>         
+    </td> 
+       
+    <td class="table-primary">
+        母父父： 
+        <%= form_tag(horses_path, :method => "get") do %>
+        <%= text_field_tag :ml3a_f , params[:ml3a_f]%>
+    </td> 
+</tr>  
+
+
+
+<tr>
+    <td class="table-danger">
+        父父母
+    </td> 
+</tr>  
+
+<tr>
+
+    <td rowspan="2" class="table-danger">
+        父母    
+    </td> 
+       
+    <td class="table-primary">
+        父母父
+    </td> 
+</tr>  
+
+<tr>
+    <td class="table-danger">
+        父母母
+    </td> 
+</tr>  
+
+</table>
+
       
     
-    <p>母父父：</p> 
-    <%= form_tag(horses_path, :method => "get") do %>
-    <%= text_field_tag :ml3a_f , params[:ml3a_f]%>
+
 
     <% if params[:ml].present? || params[:ml2].present? || params[:ml3a].present? || params[:ml2_f].present? || params[:ml3a_f].present?  %>
-        <p><%# >ここに絞り込み入れる</p> %> 
+        <p><%# >1発目の検索時は出さない</p> %> 
 　　　　<%= check_box_tag :gwin %>
         <%= label_tag :gwin, "重賞勝ち馬のみ" %>
         
@@ -74,13 +148,13 @@
 
 <%# @uma = @ml & @ml2 & @ml2_f & @ml3a_f %>
 
-<% if @uma.blank? %>
-        いません。
+<% if @uma == nil %>
+        <p>いません。
 <% end %>
 
 <% if @uma.present?  %>
 
-    <% if @uma.count >= 300 %>
+    <% if @uma.count >= 500 %>
     
         対象が多すぎます。もう少し絞ってください。
         
@@ -95,7 +169,7 @@
 <% end %>
 
 <%# end %>
-
+<%#= link_to　'Search', 'http://www.google.co.jp/' %>
 
 <% if false %>
 <% end %>
