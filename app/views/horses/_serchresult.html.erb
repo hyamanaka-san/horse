@@ -1,0 +1,28 @@
+<% allrace = 0 %> 
+<% winrace = 0 %>
+<% greki = 0 %>
+<% money1000 = 0 %>
+<% searchall = 0 %> 
+
+<% @uma.each do |uma| %>
+    <% unless uma.all == 0 %>
+              
+              <% winrace += uma.win %>
+              <% if uma.ghistory >= 1 then uma.ghistory = 1 %>
+                        <% greki += uma.ghistory %>
+              <% end %>
+              <% if uma.money >= 10000000 then umoney = 1 %>
+                        <% money1000 += umoney %>
+                        <% p= uma.money %>
+              <% end %>
+        <% searchall = searchall + 1 %>
+        <% allrace = uma.all + allrace %>
+    <% end %>
+<% end %>    
+        
+        <span class="text-monospace">
+        検索条件にマッチする馬は<%= searchall %>頭いて、<%= allrace %>戦<%= winrace %>勝 です。
+        重賞出走歴のある馬は<%= greki %>頭（出走率<%= greki/@uma.count %>）。
+        1000万以上稼いだ馬は <%= money1000 %> 頭います。
+        </span>
+       
