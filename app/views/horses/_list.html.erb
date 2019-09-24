@@ -8,6 +8,7 @@
     <thead class="thead-dark">
         <tr>
             <th>馬名</th>
+            <th>生年</th>
             <th>性別</th>
             <th>父</th>
             <th>母父</th>
@@ -23,6 +24,7 @@
         <tr>
             <small>
             <td><%= link_to uma.horse_name ,'https://db.netkeiba.com/horse/'"#{uma.horse_id}",:target=>["_blank"] %></td> 
+            <td><%= uma.birthday.year %></td>
             <td><% if uma.sex == 'boba' %> <%= uma.sex.gsub('boba','牡') %>
                 <% elsif  uma.sex == 'hinba' %> <%= uma.sex.gsub('hinba','牝') %> 
                 <% end %></td>
@@ -57,4 +59,6 @@
         1000万以上稼いだ馬は <%= money1000 %> 頭います。
         </span>
        
+       
+<%= link_to 'うまサーチTOP' ,root_path %>
 
