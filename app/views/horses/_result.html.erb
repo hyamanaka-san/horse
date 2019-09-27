@@ -31,11 +31,30 @@
 <% end %>    
     
         <span class="text-monospace">
-        検索条件にマッチする馬は<%= searchall %>頭いて、<%= allrace %>戦<%= winrace %>勝です。<p>
-        重賞出走歴のある馬は<%= greki %>頭(内 牡馬<%= grekiboba %>頭)。
-        1000万以上稼いだ馬は<%= money1000 %>頭（内 牡馬<%= money1000boba %>頭）います。
+        <%= searchall %>頭ヒットしました。戦績：<%= allrace %>戦<%= winrace %>勝<p>
+            <% if false %>
+            <重賞出走歴のある馬は<%= greki %>頭(内 牡馬<%= grekiboba %>頭)。
+            1000万以上稼いだ馬は<%= money1000 %>頭（内 牡馬<%= money1000boba %>頭）います。
+            <% end %>
         </span>
         
+<table class="table table-borderless small">
+    <tr>
+            <th></th>
+            <th>重賞出走歴</th>
+            <th>賞金1000万円以上</th>
+    </tr>
+    <tr>
+        <td>牡</td>
+        <td><%= grekiboba %>頭</td>
+        <td><%= money1000boba %>頭</td>
+    </tr>
+    <tr>
+        <td>牝</td>
+        <td><%= greki - grekiboba %>頭</td>
+        <td><%= money1000 - money1000boba %>頭</td>
+    </tr>
+</table>
     
         
     
