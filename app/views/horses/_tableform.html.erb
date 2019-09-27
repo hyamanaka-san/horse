@@ -21,7 +21,6 @@
     </td> 
 </tr>
 
-
 <tr>
     <td  class="table-danger">
         父父母
@@ -59,7 +58,7 @@
     <td class="table-primary">
         母父父： 
         <%= form_tag(horses_path, :method => "get") do %>
-        <%= text_field_tag :ml3a_f , params[:ml3a_f]%>
+        <%= text_field_tag :ml3a_f , params[:ml3a_f] %>
     </td> 
 </tr>  
 
@@ -90,24 +89,37 @@
 
 </table>
 
-    <% if params[:ml].present? || params[:ml2].present? || params[:ml3a].present? || params[:ml2_f].present? || params[:ml3a_f].present?  %>
-        <p><%# >1発目の検索時は出さない</p> %> 
-　　　　<%= check_box_tag :gwin %>
-        <%= label_tag :gwin, "重賞勝ち馬のみ" %>
-        
-　　　　<%= check_box_tag :ghistory %>
-        <%= label_tag :ghistory, "重賞出走歴あり" %>
+    <% if params[:ml].present? || params[:ml2].present? || params[:ml3a].present? || params[:ml2_f].present? || params[:ml3a_f].present? %>
 
-
+        <% if params[:ghistory].nil? %>
+    　　　　<%= check_box_tag :ghistory %>
+            <%= label_tag :ghistory, "重賞出走歴あり" %>
+            
+        <% elsif params[:ghistory].present? %>
         
-        <%#= check_box_tag :sex %>
-        <%#= label_tag :sex, "牡馬" %>       
-         
-        <p></p> <%= submit_tag 'Search', :ml => nil,  :ml2 => nil,  :ml3a => nil,:ml2_f => nil, :ml3a_f => nil ,:gwin => nil ,:ghistory  => nil %><p></p>
+    　　　　<%= check_box_tag :ghistory,1,{:checked => "checked"} %>
+            <%= label_tag :ghistory, "重賞出走歴あり" %>
+        <% end %>
+        
+        <%# >1発目の検索時は出さない</p> %> 
+        <% if params[:gwin].nil? %>
+            <%= check_box_tag :gwin %>
+            <%= label_tag :gwin, "重賞勝ちあり" %>
+ 
+        <% elsif params[:gwin].present? %>
+    　　　　<%= check_box_tag :gwin, 1 ,{:checked => "checked" }%>
+            <%= label_tag :gwin, "重賞勝ちあり" %>
+
+        <% end %>
+        
+
+      
+        <p> <%= submit_tag 'Search', :ml => nil,  :ml2 => nil,  :ml3a => nil,:ml2_f => nil, :ml3a_f => nil,:gwin => nil ,:ghistory  => nil , :sexosu => nil , :sexmesu => nil,
+                class: 'btn btn-primary w-25' %><p>
         
     <% elsif %>
          
-    <p></p> <%= submit_tag 'Search', :ml => nil,  :ml2 => nil,:ml3a => nil,:ml2_f => nil, :ml3a_f => nil %><p></p>
+    <p> <%= submit_tag 'Search',:ml => nil,  :ml2 => nil,:ml3a => nil,:ml2_f => nil, :ml3a_f => nil, class: 'btn btn-primary w-25' %><p>
     
     <% end %> 
        
@@ -123,3 +135,4 @@
     <% end %>
     <% end %>
     <% end %>
+

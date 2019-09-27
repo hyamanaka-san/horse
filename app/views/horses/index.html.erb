@@ -1,4 +1,4 @@
-<h1>うまsearch</h1>
+<h1></h1>
 
 </p> 
 <%#=  form_with(model: [post, post_comment], local: true, data: { persist: 'garlic' }) do |f|%>
@@ -7,8 +7,8 @@
 <%= render 'tableform' %>
 
 
-<%# if false %>
-    <%# if @gwin.present? || @ghistory.present? %>
+
+    <%# 配列（各検索結果）から一致するもののみ抽出  %>
     <% if @gcheck.present? %>
         <% @uma = @ml & @ml2 & @ml3a & @ml2_f & @ml3a_f & @gcheck %> 
     <% elsif @ghistory.present? %>
@@ -18,20 +18,20 @@
     <% else %>
         <% @uma = @ml & @ml2 & @ml3a  &@ml2_f & @ml3a_f  %> 
     <% end %>
-<%# end %>
+
 
 <%# @uma = @ml & @ml2 & @ml2_f & @ml3a_f %>
 
-<% if @uma.blank?  %>
-        <p>いません。</p>
+<% if @ml.blank? && @ml2.blank? && @ml3a.blank? && @ml2_f.blank? && @ml3a_f.blank?  %>
+        <p>検索してください。</p>
+<% elsif @uma.blank? %>
+        <p>検索条件に該当する馬はいません。</p>
 <% end %>
 
 <% if @uma.present?  %>
 
-    <% if @uma.count >= 500 %>
-    
+    <% if @uma.count >= 300 %>
         対象が多すぎます。もう少し絞ってください。
-        
     <% else %>
 
     <%= render 'wcount',wcount: @uma %>

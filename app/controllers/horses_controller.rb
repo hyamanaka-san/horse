@@ -35,19 +35,21 @@ class HorsesController < ApplicationController
             else
                 @ml3a_f =  @ml2_f.ml3a_f(params[:ml3a_f]) 
             end
-            
+        end
             
             @gwin = Horse.gwin(params[:gwin]) 
             @ghistory = Horse.ghistory(params[:ghistory]) 
             
-            if @gwin.present? && @ghistory.present?
-                @gcheck  = @gwin + @ghistory #両方の配列で重複するものだけをgcheckに入れる
-            end
-            #@sex = Horse.sex(params[:sex]) 
-             # @money = Uma.money(params[:money]) 
-        end  
-    
+            @sexosu = Horse.sex(params[:sexosu]) 
+            @sexmesu = Horse.sex(params[:sexmesu]) 
+            
+        if @gwin.present? && @ghistory.present?
+            @gcheck  = @gwin + @ghistory
+        end
+            
     end
+    
+
     
     def space_del
         
@@ -61,5 +63,4 @@ class HorsesController < ApplicationController
         
 
     end
-
 end
