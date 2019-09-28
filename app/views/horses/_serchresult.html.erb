@@ -19,7 +19,8 @@
         <% allrace = uma.all + allrace %>
     <% end %>
 <% end %>    
-        
+ 
+ <% if false %>       
         <span class="text-monospace">
         検索条件にマッチする馬は<%= searchall %>頭いて、<%= allrace %>戦<%= winrace %>勝 です。
         重賞出走歴のある馬は<%= greki %>頭（出走率<%= greki/@uma.count %>）。
@@ -31,3 +32,4 @@
         重賞出走歴のある馬は<%= greki %>頭（出走率<%= greki/@uma.count %>）。
         1000万以上稼いだ馬は <%= money1000 %> 頭います。
         </span>
+ <% end %>   

@@ -63,7 +63,8 @@ class Horse < ApplicationRecord
         unless gwin == nil
 
            # Horse.where(['gwin LIKE ?', "#{gwin}%"])
-            Horse.where("gwin = 1")
+          
+            Horse.where('gwin = 1')
         end
     end
     
