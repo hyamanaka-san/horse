@@ -16,7 +16,7 @@
 
 require 'csv'
 
-CSV.read("uma2014.csv").each do |row|
+CSV.read("uma2014-2.csv").each do |row|
   
      Horse.create!(
     horse_id: row[0],
