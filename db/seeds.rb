@@ -12,10 +12,11 @@
 #Umaline.create!( の部分を↑に代えてやってみてください
 
 # 実行コマンド rails db:seed
+# heroku run rake db:seed
 
 require 'csv'
 
-CSV.read("uma2015.csv").each do |row|
+CSV.read("uma2015_2.csv").each do |row|
   
      Horse.create!(
     horse_id: row[0],
