@@ -1,4 +1,6 @@
 <div class="table-responsive-lg">
+    
+
 <table class="table table-bordered small">
 <tr>
     <td rowspan="4" class="table-primary">
@@ -93,7 +95,7 @@
 
     <% if params[:ml].present? || params[:ml2].present? || params[:ml3a].present? || params[:ml2_f].present? || params[:ml3a_f].present?  %>
         <p><%# >1発目の検索時は出さない</p> %> 
-        
+        <div class="col-xs-6 ">
         <% if params[:ghistory].present? %>
     　　　　<%= check_box_tag :ghistory,1,{:checked => "checked"} %>
             <%= label_tag :ghistory, "重賞出走歴あり" %>
@@ -109,17 +111,15 @@
             <%= check_box_tag :gwin %>
             <%= label_tag :gwin, "重賞勝ち馬のみ" %>       
         <% end %> 
-
         
-
          
-        <p></p> <%= submit_tag 'Search', :ml => nil,  :ml2 => nil,  :ml3a => nil,:ml2_f => nil, :ml3a_f => nil ,
+        <p> <%= submit_tag 'Search', :ml => nil,  :ml2 => nil,  :ml3a => nil,:ml2_f => nil, :ml3a_f => nil ,
                 :gwin => nil ,:ghistory  => nil , :sexosu => nil , :sexmesu => nil,
-                class: 'btn btn-primary w-25' %><p></p>
-        
+                class: 'btn btn-primary w-25' %><p>
+        </div>
     <% elsif %>
          
-    <p></p> <%= submit_tag 'Search',:ml => nil,  :ml2 => nil,:ml3a => nil,:ml2_f => nil, :ml3a_f => nil, class: 'btn btn-primary w-25' %><p></p>
+    <p> <%= submit_tag 'Search',:ml => nil,  :ml2 => nil,:ml3a => nil,:ml2_f => nil, :ml3a_f => nil, class: 'btn btn-primary w-25' %><p></p>
     
     <% end %> 
        
