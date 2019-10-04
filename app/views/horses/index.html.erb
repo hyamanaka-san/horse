@@ -1,13 +1,16 @@
 <div class="container-fluid">
-
+ 
 <small class="text-muted">ディープインパクト、キングカメハメハ、
 マツリダゴッホなどお好みの種牡馬を入力すると、マッチする馬が表示されます。<br>
 例えば父：ロードカナロア 母父 サンデーサイレンス など複数でも検索できます。
 2013-2015年産が今のところ対象です。牡牝差、1000万以上稼いだ馬など分かるので、一口馬主やPOGで悩んだ時に便利です。</small>
 <p>
 
+
 <%#=  form_with(model: [post, post_comment], local: true, data: { persist: 'garlic' }) do |f|%>
+
 <%= render 'tableform' %>
+
     <%# 配列（各検索結果）から一致するもののみ抽出  %>
     <% if @gcheck.present? %>
         <% @uma = @ml & @ml2 & @ml3a & @ml2_f & @ml3a_f & @gcheck %> 
@@ -23,7 +26,8 @@
 <%# @uma = @ml & @ml2 & @ml2_f & @ml3a_f %>
 
 <% if params[:ml].blank? && params[:ml2].blank? && params[:ml3a].blank? && params[:ml2_f].blank? && params[:ml3a_f].blank? %>
-        <%= render 'popular' %>
+        <%#= render 'popular' %>
+        
 <% elsif @uma.blank? %>
         <p>検索条件に該当する馬はいません。</p>
 <% end %>
