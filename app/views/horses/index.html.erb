@@ -1,13 +1,7 @@
-<h1></h1>
 
-</p> 
+
 <%#=  form_with(model: [post, post_comment], local: true, data: { persist: 'garlic' }) do |f|%>
-
-
 <%= render 'tableform' %>
-
-
-
     <%# 配列（各検索結果）から一致するもののみ抽出  %>
     <% if @gcheck.present? %>
         <% @uma = @ml & @ml2 & @ml3a & @ml2_f & @ml3a_f & @gcheck %> 
@@ -22,29 +16,23 @@
 
 <%# @uma = @ml & @ml2 & @ml2_f & @ml3a_f %>
 
-<% if @ml.blank? && @ml2.blank? && @ml3a.blank? && @ml2_f.blank? && @ml3a_f.blank?  %>
-        <p>検索してください。</p>
+<% if params[:ml].blank? && params[:ml2].blank? && params[:ml3a].blank? && params[:ml2_f].blank? && params[:ml3a_f].blank? %>
+        <%# やはりこの場合は表示しないでいい %>
 <% elsif @uma.blank? %>
         <p>検索条件に該当する馬はいません。</p>
 <% end %>
 
 <% if @uma.present?  %>
 
-    <% if @uma.count >= 300 %>
+    <% if @uma.count >= 400 %>
         対象が多すぎます。もう少し絞ってください。
     <% else %>
-
-
     <%= render 'result' %>
     <%= render 'wcount',wcount: @uma %>
     <%= render 'list' %>
-
     <% end %>
-        
 <% end %>
 
-<%# end %>
-<%#= link_to　'Search', 'http://www.google.co.jp/' %>
 
 <% if false %>
 <% end %>

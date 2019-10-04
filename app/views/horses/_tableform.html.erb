@@ -1,7 +1,5 @@
-<div class="table-responsive-lg">
-    
 
-<table class="table table-bordered small">
+<table class="table table-bordered table-responsive-sm small">
 <tr>
     <td rowspan="4" class="table-primary">
     <p> 父:</p> 
@@ -91,48 +89,45 @@
 </tr>  
 
 </table>
-</div>
+
 
     <% if params[:ml].present? || params[:ml2].present? || params[:ml3a].present? || params[:ml2_f].present? || params[:ml3a_f].present?  %>
-        <p><%# >1発目の検索時は出さない</p> %> 
-        <div class="col-xs-6 ">
+        <br><%# >1発目の検索時は出さない</p> %>
         <% if params[:ghistory].present? %>
-    　　　　<%= check_box_tag :ghistory,1,{:checked => "checked"} %>
-            <%= label_tag :ghistory, "重賞出走歴あり" %>
+                <%= check_box_tag :ghistory,1,{:checked => "checked"} %>
+                <%= label_tag :ghistory,"重賞出走歴あり" %>
         <% else %>
-    　　　　<%= check_box_tag :ghistory %>
-            <%= label_tag :ghistory, "重賞出走歴あり" %>
+                <%= check_box_tag :ghistory %>
+                <%= label_tag :ghistory,"重賞出走歴あり" %>
         <% end %>
  
-        <% if params[:gwin].present? %>       
-    　　　　<%= check_box_tag :gwin,1,{:checked => "checked"} %>
-            <%= label_tag :gwin, "重賞勝ち馬のみ" %>
+        <% if params[:gwin].present? %>  
+                <%= check_box_tag :gwin,1,{:checked => "checked"} %>
+                <%= label_tag :gwin,"重賞勝ち馬のみ" %>
         <% else %>
-            <%= check_box_tag :gwin %>
-            <%= label_tag :gwin, "重賞勝ち馬のみ" %>       
+                <%= check_box_tag :gwin %>
+                <%= label_tag :gwin,"重賞勝ち馬のみ" %>  
         <% end %> 
-        
+<div>        
          
-        <p> <%= submit_tag 'Search', :ml => nil,  :ml2 => nil,  :ml3a => nil,:ml2_f => nil, :ml3a_f => nil ,
-                :gwin => nil ,:ghistory  => nil , :sexosu => nil , :sexmesu => nil,
-                class: 'btn btn-primary w-25' %><p>
-        </div>
+            <p><p><%= submit_tag 'Search', :ml => nil,  :ml2 => nil,  :ml3a => nil,:ml2_f => nil, :ml3a_f => nil ,
+                :gwin => nil ,:ghistory  => nil ,class: 'btn btn-primary w-25' %><p>
+        
+        
     <% elsif %>
          
-    <p> <%= submit_tag 'Search',:ml => nil,  :ml2 => nil,:ml3a => nil,:ml2_f => nil, :ml3a_f => nil, class: 'btn btn-primary w-25' %><p></p>
-    
+    <p><p><%= submit_tag 'Search',:ml => nil,  :ml2 => nil,:ml3a => nil,:ml2_f => nil, :ml3a_f => nil, class: 'btn btn-primary w-25' %>
+    <p>
     <% end %> 
-       
-    <%#= submit_tag 'Search', :ml ,:ml2 ,:ml2_f,:ml3a_f  %>
-        <%#= form_tag(umas_path, :method => "get") do %>
-    <%#= text_field_tag :money %>
-    <%#= submit_tag 'Search', :horse_name => nil,:gwin => nil,:money => nil %>
-
-
+<%#= submit_tag 'Search', :ml ,:ml2 ,:ml2_f,:ml3a_f  %>
+<%#= form_tag(umas_path, :method => "get") do %>
+<%#= text_field_tag :money %>
+<%#= submit_tag 'Search', :horse_name => nil,:gwin => nil,:money => nil %>
 <%# フォームの数だけend必要 忘れがち%>
-    <% end %>
-    <% end %>
-    <% end %>
-    <% end %>
-    <% end %>
 
+    <% end %>
+    <% end %>
+    <% end %>
+    <% end %>
+    <% end %>
+</div>
